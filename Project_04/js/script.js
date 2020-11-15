@@ -13,7 +13,9 @@ let gamefont;
 
 // HUD Visuals variables;
 let gamebordersimage;
-let cursorimage;
+let cursortargetimage;
+let cursorgoodtargetimage;
+let cursorbadtargetimage;
 
 // Player visuals variables.
 let crossbow1image;
@@ -23,6 +25,7 @@ let cowidleimage;
 
 // UFO visuals variables.
 let ufoimage;
+let ufoexplosionimage;
 
 // Global Visuals variables.
 let gamebackgroundimage;
@@ -43,6 +46,9 @@ let gamefaunaimage;
 // FPS variable.
 let fr = 30;
 
+// Counter variable.
+let counter = 0;
+
 // Players variables.
 let players = [];
 let numplayers = 1;
@@ -53,7 +59,7 @@ let numcows = 5;
 
 // UFOs variables.
 let ufos = [];
-let numufos = 2;
+let numufos = 1;
 
 function preload() {
   // Fonts.
@@ -61,7 +67,9 @@ function preload() {
 
   // HUD visuals.
   gamebordersimage = loadImage("assets/images/gameborders.png");
-  cursorimage = loadImage("assets/images/cursortarget.png");
+  cursortargetimage = loadImage("assets/images/cursortarget.png");
+  cursorgoodtargetimage = loadImage("assets/images/cursorgoodtarget.png");
+  cursorbadtargetimage = loadImage("assets/images/cursorbadtarget.png");
 
   // Player visuals.
   crossbow1image = loadImage("assets/images/crossbow1.png");
@@ -71,6 +79,7 @@ function preload() {
 
   // UFO visuals.
   ufoimage = loadImage("assets/images/gameufo.png");
+  ufoexplosionimage = loadImage("assets/images/gameexplosion.gif");
 
   // Global Visuals.
   gamecolorimage = loadImage("assets/images/gamecolor.png");
@@ -144,23 +153,15 @@ function draw() {
   if (state === "title") {
     global();
     title();
-    hud();
+    //  hud();
   } else if (state === "game") {
     game();
     cow();
     ufo();
     player();
     global();
-    hud();
+    // hud();
   }
-}
-
-// Game HUD.
-function hud() {
-  push();
-  imageMode(CENTER);
-  image(cursorimage, mouseX, mouseY, 125, 125);
-  pop();
 }
 
 // Game function.
@@ -201,10 +202,18 @@ function title() {
   image(gametitleimage, width / 2, height / 2, 1024, 1024);
   pop();
 
-  push();
-  imageMode(CENTER);
-  image(gametitleenterimage, width / 2, 974, 1024, 1024);
-  pop();
+  if (counter >= 15) {
+    push();
+    imageMode(CENTER);
+    image(gametitleenterimage, width / 2, 974, 1024, 1024);
+    pop();
+  }
+
+  if (counter == 30) {
+    // This only happens every second.
+    counter = 0;
+  }
+  counter++;
 }
 
 // Game function.
@@ -251,6 +260,7 @@ function ufo() {
     let ufo = ufos[i];
     ufo.display();
     ufo.move();
+    ufo.hud();
   }
 }
 
@@ -258,7 +268,7 @@ function ufo() {
 function keyPressed() {
   // Switch from title to game.
   if (state === "title") {
-    if (keyCode == 13) {
+    if (keyCode == 32) {
       state = "game";
     }
   }

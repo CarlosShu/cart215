@@ -34,22 +34,21 @@ class UFO {
     image(ufoimage, this.x, this.y, this.xSize, this.ySize);
     pop();
   }
-}
 
-// display() {
-//   push();
-//   imageMode(CENTER);
-//
-//   if (mouseIsPressed) {
-//     if (this.distance < this.size / 2) {
-//       //score = score + 1;
-//
-//       this.x = random(-30, width + 30);
-//       this.y = height + 30;
-//     }
-//   } else {
-//     image(ufoimage, this.x, this.y, this.xSize, this.ySize);
-//   }
-//   pop();
-// }
-// }
+  // Game HUD.
+  hud() {
+    push();
+    imageMode(CENTER);
+    if (
+      this.x > mouseX - this.xSize / 2 &&
+      this.x < mouseX + this.xSize / 2 &&
+      this.y > mouseY - this.ySize / 2 &&
+      this.y < mouseY + this.ySize / 2
+    ) {
+      image(cursorbadtargetimage, mouseX, mouseY, 125, 125);
+    } else {
+      image(cursortargetimage, mouseX, mouseY, 125, 125);
+    }
+    pop();
+  }
+}
