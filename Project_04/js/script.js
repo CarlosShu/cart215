@@ -18,7 +18,9 @@ let cursorgoodtargetimage;
 let cursorbadtargetimage;
 
 // Player visuals variables.
-let crossbow1image;
+let bazooka1image;
+let bazooka2image;
+let bazooka3image;
 
 // Cow visuals variables.
 let cowidleimage;
@@ -72,7 +74,9 @@ function preload() {
   cursorbadtargetimage = loadImage("assets/images/cursorbadtarget.png");
 
   // Player visuals.
-  crossbow1image = loadImage("assets/images/crossbow1.png");
+  bazooka1image = loadImage("assets/images/gamebazooka1.png");
+  bazooka2image = loadImage("assets/images/gamebazooka2.png");
+  bazooka3image = loadImage("assets/images/gamebazooka3.png");
 
   // Cow visuals.
   cowidleimage = loadImage("assets/images/cowidle.gif");
@@ -112,7 +116,7 @@ function setup() {
   for (let i = 0; i < numplayers; i++) {
     // player X and Y spawn.
     let x = 400;
-    let y = 750;
+    let y = 760;
 
     let player = new Player(x, y);
     players.push(player);
@@ -120,16 +124,23 @@ function setup() {
 
   for (let i = 0; i < numcows; i++) {
     // cows X and Y spawn.
-    let x = random(100, 924);
+    let x = random(100, 700);
     let y = random(320, 480);
+    let xSize = 80;
+    let ySize = 55;
 
-    let cow = new Cow(x, y);
+    let cow = new Cow(x, y, xSize, ySize);
     cows.push(cow);
   }
 
   // Create the ufos.
   for (let i = 0; i < numufos; i++) {
-    let ufo = new UFO(random(0, width), random(0, height));
+    // ufos X and Y spawn.
+    let x = random(0, width);
+    let y = random(0, height);
+    let xSize = 200;
+    let ySize = 100;
+    let ufo = new UFO(x, y, xSize, ySize);
     ufos.push(ufo);
   }
 }

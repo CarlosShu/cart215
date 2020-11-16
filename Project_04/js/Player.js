@@ -5,7 +5,7 @@ class Player {
     this.vx = 0;
     this.speed = 5;
     this.maxspeed = 5;
-    this.size = 520;
+    this.size = 500;
   }
 
   move() {
@@ -16,7 +16,13 @@ class Player {
   display() {
     push();
     imageMode(CENTER);
-    image(crossbow1image, this.x, this.y, this.size, this.size);
+    if (mouseY > 400) {
+      image(bazooka1image, this.x, this.y, this.size, this.size);
+    } else if (mouseY <= 400 && mouseY >= 200) {
+      image(bazooka2image, this.x, this.y, this.size, this.size);
+    } else if (mouseY < 200) {
+      image(bazooka3image, this.x, this.y, this.size, this.size);
+    }
     pop();
   }
 }

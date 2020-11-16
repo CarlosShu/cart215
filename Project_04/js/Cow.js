@@ -1,9 +1,9 @@
 class Cow {
-  constructor(x, y) {
+  constructor(x, y, xSize, ySize) {
     this.x = x;
     this.y = y;
-    this.xSize = 80;
-    this.ySize = 55;
+    this.xSize = xSize;
+    this.ySize = ySize;
   }
 
   display() {

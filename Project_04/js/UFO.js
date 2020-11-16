@@ -1,9 +1,9 @@
 class UFO {
-  constructor(x, y) {
+  constructor(x, y, xSize, ySize) {
     this.x = x;
     this.y = y;
-    this.xSize = 200;
-    this.ySize = 100;
+    this.xSize = xSize;
+    this.ySize = ySize;
     this.vx = 0;
     this.vy = 0;
     this.speed = 10;
