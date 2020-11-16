@@ -5,12 +5,12 @@ class Player {
     this.vx = 0;
     this.speed = 5;
     this.maxspeed = 5;
-    this.size = 640;
+    this.size = 520;
   }
 
   move() {
     this.x = mouseX;
-    this.x = constrain(this.x, 0, 1024);
+    this.x = constrain(this.x, 0, 800);
   }
 
   display() {

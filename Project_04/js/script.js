@@ -103,7 +103,7 @@ let state = "title";
 
 // Function Setup.
 function setup() {
-  createCanvas(1024, 1024);
+  createCanvas(800, 800);
   // FPS.
   frameRate(fr);
   // Removes cursor.
@@ -111,8 +111,8 @@ function setup() {
 
   for (let i = 0; i < numplayers; i++) {
     // player X and Y spawn.
-    let x = 512;
-    let y = 924;
+    let x = 400;
+    let y = 750;
 
     let player = new Player(x, y);
     players.push(player);
@@ -121,7 +121,7 @@ function setup() {
   for (let i = 0; i < numcows; i++) {
     // cows X and Y spawn.
     let x = random(100, 924);
-    let y = random(400, 620);
+    let y = random(320, 480);
 
     let cow = new Cow(x, y);
     cows.push(cow);
@@ -141,12 +141,12 @@ function windowResized() {
 
 // Draw function.
 function draw() {
-  createCanvas(1024, 1024);
+  createCanvas(800, 800);
 
   // Global background.
   push();
   imageMode(CENTER);
-  image(gamebackgroundimage, width / 2, height / 2, 1024, 1024);
+  image(gamebackgroundimage, width / 2, height / 2, 800, 800);
   pop();
 
   // States.
@@ -169,29 +169,29 @@ function global() {
   push();
   imageMode(CENTER);
   blendMode(OVERLAY);
-  image(gamecolorimage, width / 2, height / 2, 1024, 1024);
+  image(gamecolorimage, width / 2, height / 2, 800, 800);
   pop();
 
   push();
   imageMode(CENTER);
-  image(gamelightimage, width / 2, height / 2, 1024, 1024);
+  image(gamelightimage, width / 2, height / 2, 800, 800);
   pop();
 
   push();
   imageMode(CENTER);
-  image(gamelightimage, width / 2, height / 2, 1024, 1024);
+  image(gamelightimage, width / 2, height / 2, 800, 800);
   pop();
 
   push();
   imageMode(CENTER);
   blendMode(OVERLAY);
-  image(gamedesaturateimage, width / 2, height / 2, 1024, 1024);
+  image(gamedesaturateimage, width / 2, height / 2, 800, 800);
   pop();
 
   push();
   imageMode(CENTER);
   blendMode(SCREEN);
-  image(gamestaticimage, width / 2, height / 2, 1024, 1024);
+  image(gamestaticimage, width / 2, height / 2, 800, 800);
   pop();
 }
 
@@ -199,13 +199,13 @@ function global() {
 function title() {
   push();
   imageMode(CENTER);
-  image(gametitleimage, width / 2, height / 2, 1024, 1024);
+  image(gametitleimage, width / 2, height / 2, 800, 800);
   pop();
 
   if (counter >= 15) {
     push();
     imageMode(CENTER);
-    image(gametitleenterimage, width / 2, 974, 1024, 1024);
+    image(gametitleenterimage, width / 2, 974, 800, 800);
     pop();
   }
 
@@ -220,19 +220,19 @@ function title() {
 function game() {
   push();
   imageMode(CENTER);
-  image(gamebackgroundimage, width / 2, height / 2, 1024, 1024);
+  image(gamebackgroundimage, width / 2, height / 2, 800, 800);
   pop();
   push();
   imageMode(CENTER);
-  image(gamehousesimage, width / 2, height / 2, 1024, 1024);
+  image(gamehousesimage, width / 2, height / 2, 800, 800);
   pop();
   push();
   imageMode(CENTER);
-  image(gamefenceimage, width / 2, height / 2, 1024, 1024);
+  image(gamefenceimage, width / 2, height / 2, 800, 800);
   pop();
   push();
   imageMode(CENTER);
-  image(gamefaunaimage, width / 2, height / 2, 1024, 1024);
+  image(gamefaunaimage, width / 2, height / 2, 800, 800);
   pop();
 }
 

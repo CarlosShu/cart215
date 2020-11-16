@@ -2,8 +2,8 @@ class UFO {
   constructor(x, y) {
     this.x = x;
     this.y = y;
-    this.xSize = 220;
-    this.ySize = 110;
+    this.xSize = 200;
+    this.ySize = 100;
     this.vx = 0;
     this.vy = 0;
     this.speed = 10;
@@ -45,9 +45,9 @@ class UFO {
       this.y > mouseY - this.ySize / 2 &&
       this.y < mouseY + this.ySize / 2
     ) {
-      image(cursorbadtargetimage, mouseX, mouseY, 125, 125);
+      image(cursorbadtargetimage, mouseX, mouseY, 100, 100);
     } else {
-      image(cursortargetimage, mouseX, mouseY, 125, 125);
+      image(cursortargetimage, mouseX, mouseY, 100, 100);
     }
     pop();
   }
