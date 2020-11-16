@@ -205,7 +205,7 @@ function title() {
   if (counter >= 15) {
     push();
     imageMode(CENTER);
-    image(gametitleenterimage, width / 2, 974, 800, 800);
+    image(gametitleenterimage, width / 2, 750, 800, 800);
     pop();
   }
 
