@@ -61,6 +61,7 @@ let score = 0;
 
 // Score variable.
 let reloadtimecounter = 0;
+
 let reloadtimeleft = 0;
 
 // Players variables.
@@ -76,7 +77,7 @@ let numcows = 5;
 
 // UFOs variables.
 let ufos = [];
-let numufos = 2;
+let numufos = 1;
 
 function preload() {
   // Fonts.
@@ -184,35 +185,14 @@ function draw() {
   if (state === "title") {
     global();
     title();
-    globalhud();
   } else if (state === "game") {
     game();
     cow();
-    level1();
+    ufo();
     missilespawn();
     player();
     global();
     gamehud();
-    globalhud();
-  }
-}
-
-// Global HUD.
-function globalhud() {
-  push();
-  imageMode(CENTER);
-  image(cursortargetimage, mouseX, mouseY, 60, 60);
-  pop();
-
-  if (reloadtimeleft <= 3 && reloadtimeleft > 0) {
-    // Reload time left.
-    push();
-    textAlign(CENTER, CENTER);
-    textFont(gamefont);
-    textSize(10);
-    fill(255, 255, 255);
-    text("RELOADING ", mouseX, mouseY - 45);
-    pop();
   }
 }
 
@@ -273,7 +253,7 @@ function title() {
   }
 
   if (counter == 30) {
-    // Only happens every second.
+    // ufo only happens every second.
     counter = 0;
   }
   counter++;
@@ -329,51 +309,23 @@ function cow() {
   }
 }
 
-// UFO and Missile interaction function.
-function level1() {
-  // UFO Spawn.
+// UFO function.
+function ufo() {
   for (let i = 0; i < ufos.length; i++) {
     let ufo = ufos[i];
     ufo.display();
     ufo.move();
-
-    // Missile Spawn.
-    for (let i = 0; i < missiles.length; i++) {
-      let missile = missiles[i];
-      missile.display();
-      missile.move();
-
-      // Ufo and Missile interaction.
-      if (
-        missile.x > ufo.x - missile.xSize / 0.5 &&
-        missile.x < ufo.x + missile.xSize / 0.5 &&
-        missile.y > ufo.y - missile.ySize / 2 &&
-        missile.y < ufo.y + missile.ySize / 2
-      ) {
-        // Reload time left.
-        push();
-        textAlign(CENTER, CENTER);
-        textFont(gamefont);
-        textSize(50);
-        fill(255, 255, 255);
-        text("TEST", 400, 400);
-        pop();
-
-        ufo.x = undefined;
-        ufo.y = undefined;
-      }
-    }
+    ufo.hud();
   }
 }
 
-function missilespawn() {
-  // 3 second timer.
-  if (reloadtimeleft <= 3 && reloadtimeleft > 0) {
-    if (reloadtimecounter == 30) {
-      reloadtimecounter = 0;
-      reloadtimeleft--;
+// Key press function.
+function keyPressed() {
+  // Switch from title to game.
+  if (state === "title") {
+    if (keyCode == 32) {
+      state = "game";
     }
-    reloadtimecounter++;
   }
 }
 
@@ -393,12 +345,20 @@ function createMissile(x, y) {
   missiles.push(missile);
 }
 
-// Key press function.
-function keyPressed() {
-  // Switch from title to game.
-  if (state === "title") {
-    if (keyCode == 32) {
-      state = "game";
+function missilespawn() {
+  for (let i = 0; i < missiles.length; i++) {
+    let missile = missiles[i];
+    missile.display();
+    missile.move();
+  }
+
+  // 5 second timer.
+  if (reloadtimeleft <= 3 && reloadtimeleft > 0) {
+    if (reloadtimecounter == 30) {
+      // ufo only happens every second.
+      reloadtimecounter = 0;
+      reloadtimeleft--;
     }
+    reloadtimecounter++;
   }
 }

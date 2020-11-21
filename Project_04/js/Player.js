@@ -5,7 +5,7 @@ class Player {
     this.vx = 0;
     this.speed = 5;
     this.maxspeed = 5;
-    this.size = 500;
+    this.size = 300;
   }
 
   move() {

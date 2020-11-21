@@ -34,4 +34,23 @@ class UFO {
     image(ufoimage, this.x, this.y, this.xSize, this.ySize);
     pop();
   }
+
+  // Game HUD.
+  hud() {
+    push();
+    imageMode(CENTER);
+    image(cursorbadtargetimage, mouseX, mouseY, 60, 60);
+    pop();
+
+    if (reloadtimeleft == 3) {
+      // Reload time left.
+      push();
+      textAlign(CENTER, CENTER);
+      textFont(gamefont);
+      textSize(10);
+      fill(255, 255, 255);
+      text("RELOADING", mouseX, mouseY - 45);
+      pop();
+    }
+  }
 }
